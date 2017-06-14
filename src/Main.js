@@ -3,6 +3,7 @@ import NoteForm from './NoteForm.js'
 import Sidebar from './Sidebar.js'
 import NoteList from './NoteList.js'
 
+
 const Main = () =>{
     return (
         <div className="Main">
