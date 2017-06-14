@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './NoteForm.css'
 
-class NodeForm extends Component {
+class NoteForm extends Component {
   render() {
     return (
-      <div className="NodeForm">
+      <div className="NoteForm">
           <form>
               <p>
                 <input type="text" name="title" placeholder="Title your note" value="" />
@@ -18,4 +18,4 @@ class NodeForm extends Component {
   }
 }
 
-export default NodeForm;
+export default NoteForm;
