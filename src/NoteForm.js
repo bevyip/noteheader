@@ -7,7 +7,7 @@ class NoteForm extends Component {
       this.updateBody = this.updateBody.bind(this)
       this.updateTitle = this.updateTitle.bind(this)
       this.addEntry = this.addEntry.bind(this)
-      console.log(super.state)
+      
       this.state={
         body: '',
         title: '',
@@ -34,7 +34,7 @@ class NoteForm extends Component {
       noteTitle: this.state.title,
       noteBody: this.state.body,
     }
-    super.state.entries.push(entryLog)
+    this.props.entries.push(entryLog)
     this.setState(state)
   }
 
@@ -43,7 +43,7 @@ class NoteForm extends Component {
       <div className="NoteForm">
           <form>
               <p>
-                <input type="text" onChange={this.updateTitle} name="title" placeholder="Title your note" value="" />
+                <input type="text" onChange={this.updateTitle} name="title" placeholder="Title your note"></input>
               </p>
               <p>
                 <textarea name="body" cols="30" rows="10" onChange={this.updateBody} placeholder="Just start typing..."></textarea>
@@ -51,7 +51,7 @@ class NoteForm extends Component {
               <p>
                 <button 
                   className="submit"
-                  
+                  onClick={this.addEntry}
                 ><span>
                   Submit
                   </span>
