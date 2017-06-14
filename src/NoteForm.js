@@ -12,6 +12,14 @@ class NoteForm extends Component {
               <p>
                 <textarea name="body" cols="30" rows="10" placeholder="Just start typing..."></textarea>
               </p>
+              <p>
+                <button 
+                  className="submit"
+                ><span>
+                  Submit
+                  </span>
+                  </button>
+              </p>
             </form>
         </div>
     );
