@@ -11,6 +11,11 @@ class NoteForm extends Component {
     }
   }
 
+componentWillReceiveProps(nextProps){
+    this.setState({note: nextProps.activeNote})
+  }
+
+
   blankNote = () => {
     return {
       id: null,
@@ -22,15 +27,14 @@ class NoteForm extends Component {
   handleChanges = (ev) => {
     const note = {...this.state.note}
     note[ev.target.name] = ev.target.value
-    this.setState(
-      { note },
-      () => this.props.saveNote(this.state.note)
-    ) 
+    this.setState({ note }, () => this.props.saveNote(note)) 
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.setState({ note: this.blankNote() })
+    this.setState({ note: this.blankNote() },
+      () => this.props.saveNote(this.state.note)
+    )
   }
 
   render() {

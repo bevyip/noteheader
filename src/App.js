@@ -9,7 +9,12 @@ class App extends Component {
 
     this.state = {
       notes: {},
+      activeNote: {},
     }
+  }
+
+  storeActiveNote = (note) => {
+    this.setState({activeNote: note})
   }
 
   saveNote = (note) => {
@@ -18,13 +23,13 @@ class App extends Component {
     }
     const notes = {...this.state.notes}
     notes[note.id] = note
-    this.setState({ notes })
+    this.setState({ notes, activeNote: note })
   }
 
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} saveNote={this.saveNote} />
+        <Main notes={this.state.notes} saveNote={this.saveNote} storeActiveNote={this.storeActiveNote.bind(this)} activeNote={this.state.activeNote}/>
       </div>
     );
   }
