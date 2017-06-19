@@ -7,14 +7,13 @@ class NoteForm extends Component {
     super(props)
 
     this.state = {
-      note: this.blankNote(),
+      note: props.blankNote(),
     }
   }
 
 componentWillReceiveProps(nextProps){
     this.setState({note: nextProps.activeNote})
-  }
-
+}
 
   blankNote = () => {
     return {
@@ -30,17 +29,10 @@ componentWillReceiveProps(nextProps){
     this.setState({ note }, () => this.props.saveNote(note)) 
   }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault()
-    this.setState({ note: this.blankNote() },
-      () => this.props.saveNote(this.state.note)
-    )
-  }
-
   render() {
     return (
       <div className="NoteForm">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <p>
             <input
               type="text"
@@ -58,7 +50,6 @@ componentWillReceiveProps(nextProps){
               value={this.state.note.body}
             ></textarea>
           </p>
-          <button type="submit">Save and new</button>
         </form>
       </div>
     )

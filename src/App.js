@@ -57,6 +57,20 @@ class App extends Component {
     this.setState({ notes, activeNote: note })
   }
 
+   blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
+    }
+  }
+
+  saveNote2 = () => {
+    const notes = {...this.state.notes}
+    notes[this.state.activeNote.id] = this.state.activeNote
+    this.setState({activeNote: this.blankNote()})
+  }
+
   signedIn = () => {
     return this.state.uid
   }
@@ -84,7 +98,9 @@ class App extends Component {
           saveNote={this.saveNote} 
           storeActiveNote={this.storeActiveNote.bind(this)} 
           activeNote={this.state.activeNote} 
-          deleteNote={this.deleteNote}/>
+          deleteNote={this.deleteNote}
+          saveNote2={this.saveNote2}
+          blankNote={this.blankNote}/>
       </div>
     )
   }
