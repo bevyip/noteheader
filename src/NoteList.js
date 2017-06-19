@@ -2,6 +2,7 @@ import React from 'react'
 
 import './NoteList.css'
 import Note from './Note'
+import SignIn from './SignIn'
 
 const NoteList = (props) => {
   return (
