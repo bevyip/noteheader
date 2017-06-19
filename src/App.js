@@ -4,7 +4,7 @@ import './App.css';
 import Main from './Main'
 import SignIn from './SignIn'
 import SignOut from './SignOut'
-import base from './base'
+import base, { auth } from './base'
 
 class App extends Component {
   constructor() {
@@ -17,8 +17,18 @@ class App extends Component {
   }
 
   componentWillMount(){
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user){
+          this.authHandler(user)
+        }
+      }
+    )
+  }
+
+   syncNotes = () => {
     base.syncState(
-      'notes', 
+      `${this.state.uid}/notes`,
       {
         context: this,
         state: 'notes',
@@ -45,16 +55,22 @@ class App extends Component {
     this.setState({ notes, activeNote: note })
   }
 
-   signedIn = () => {
+  signedIn = () => {
     return this.state.uid
   }
 
   authHandler = (userData) => {
-    this.setState({ uid: userData.uid })
+    this.setState(
+      { uid: userData.uid },
+      this.syncNotes
+    )
   }
 
   signOut = () => {
-    this.setState({ uid: null })
+    auth
+      .signOut()
+      .then(() => this.setState({ uid: null }))
+    
   }
 
   renderMain = () => {
@@ -70,7 +86,7 @@ class App extends Component {
     return (
       <div className="App">
         {
-          this.signedIn() ? this.renderMain() : <SignIn authHandler={this.authHandler} />
+          this.signedIn() ? this.renderMain() : <SignIn />
         }
       </div>
     );
