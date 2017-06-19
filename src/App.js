@@ -26,10 +26,6 @@ class App extends Component {
     )
   }
 
-  signedIn = () => {
-    return true
-  }
-
   storeActiveNote = (note) => {
     this.setState({activeNote: note})
   }
@@ -49,11 +45,23 @@ class App extends Component {
     this.setState({ notes, activeNote: note })
   }
 
+   signedIn = () => {
+    return this.state.uid
+  }
+
+  authHandler = (userData) => {
+    this.setState({ uid: userData.uid })
+  }
+
+  signOut = () => {
+    this.setState({ uid: null })
+  }
+
   renderMain = () => {
     return (
       <div>
-        <SignOut/ >
-        <Main notes={this.state.notes} saveNote={this.saveNote} storeActiveNote={this.storeActiveNote.bind(this)} activeNote={this.state.activeNote} deleteNote={this.deleteNote}/>
+        <SignOut signOut={this.signOut} />
+          <Main notes={this.state.notes} saveNote={this.saveNote} storeActiveNote={this.storeActiveNote.bind(this)} activeNote={this.state.activeNote} deleteNote={this.deleteNote}/>
       </div>
     )
   }
@@ -62,7 +70,7 @@ class App extends Component {
     return (
       <div className="App">
         {
-          this.signedIn() ? this.renderMain() : <SignIn />
+          this.signedIn() ? this.renderMain() : <SignIn authHandler={this.authHandler} />
         }
       </div>
     );

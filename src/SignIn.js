@@ -2,12 +2,21 @@ import React from 'react'
 
 import './SignIn.css'
 
-const SignIn = () => {
-    return(
-        <button className="SignIn">
-        Sign in With Github
-        </button>
-    )
+const SignIn = ({ authHandler }) => {
+  const authenticate = () => {
+    authHandler({
+      uid: 'dstrus',
+    })
+  }
+
+  return (
+    <button
+      className="SignIn"
+      onClick={authenticate}
+    >
+      Sign In With GitHub
+    </button>
+  )
 }
 
 export default SignIn

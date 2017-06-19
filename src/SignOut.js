@@ -2,12 +2,15 @@ import React from 'react'
 
 import './SignOut.css'
 
-const SignOut = () => {
-    return(
-        <button className="SignOut">
-        Sign Out
-        </button>
-    )
+const SignOut = ({ signOut }) => {
+  return (
+    <button
+      className="SignOut"
+      onClick={signOut}
+    >
+      Sign Out
+    </button>
+  )
 }
 
 export default SignOut
