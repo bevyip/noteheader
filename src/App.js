@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Main from './Main'
+import base from './base'
 
 class App extends Component {
   constructor() {
@@ -11,6 +12,16 @@ class App extends Component {
       notes: {},
       activeNote: {},
     }
+  }
+
+  componentWillMount(){
+    base.syncState(
+      'notes', 
+      {
+        context: this,
+        state: 'notes',
+      }
+    )
   }
 
   storeActiveNote = (note) => {
