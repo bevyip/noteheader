@@ -8,7 +8,7 @@ const app = firebase.initializeApp({
     authDomain: "noteheader.firebaseapp.com",
     databaseURL: "https://noteheader.firebaseio.com",
     projectId: "noteheader",
-    storageBucket: "",
+    storageBucket: "noteheader.appspot.com",
     messagingSenderId: "351497347246"
 })
 

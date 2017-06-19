@@ -9,7 +9,7 @@
     "react-dom": "^15.6.0"
   },
   "devDependencies": {
-     "gh-pages": "^1.0.0",
+    "gh-pages": "^1.0.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
