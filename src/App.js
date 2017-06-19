@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       notes: {},
       activeNote: {},
+      uid: null,
     }
   }
 
@@ -42,7 +43,8 @@ class App extends Component {
 
   deleteNote = (note) => {
     const notes = {...this.state.notes}
-    delete notes[note.id]
+    notes[note.id] = null
+    //delete notes[note.id] this doesnt sync with Firebase
     this.setState ({notes})
   }
 
@@ -77,7 +79,12 @@ class App extends Component {
     return (
       <div>
         <SignOut signOut={this.signOut} />
-          <Main notes={this.state.notes} saveNote={this.saveNote} storeActiveNote={this.storeActiveNote.bind(this)} activeNote={this.state.activeNote} deleteNote={this.deleteNote}/>
+          <Main 
+          notes={this.state.notes} 
+          saveNote={this.saveNote} 
+          storeActiveNote={this.storeActiveNote.bind(this)} 
+          activeNote={this.state.activeNote} 
+          deleteNote={this.deleteNote}/>
       </div>
     )
   }
