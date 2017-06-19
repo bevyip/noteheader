@@ -15,6 +15,7 @@ const app = firebase.initializeApp({
 const db = database(app)
 
 export const auth = app.auth()
+export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 export const githubProvider = new firebase.auth.GithubAuthProvider()
 
 export default Rebase.createClass(db)
