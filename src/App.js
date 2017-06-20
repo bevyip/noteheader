@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './Main'
 import SignIn from './SignIn'
-import SignOut from './SignOut'
 import base, { auth } from './base'
 
 class App extends Component {
@@ -92,7 +91,6 @@ class App extends Component {
   renderMain = () => {
     return (
       <div>
-        <SignOut signOut={this.signOut} />
           <Main 
           notes={this.state.notes} 
           saveNote={this.saveNote} 
@@ -100,7 +98,8 @@ class App extends Component {
           activeNote={this.state.activeNote} 
           deleteNote={this.deleteNote}
           saveNote2={this.saveNote2}
-          blankNote={this.blankNote}/>
+          blankNote={this.blankNote}
+          signOut={this.signOut}/>
       </div>
     )
   }
