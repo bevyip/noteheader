@@ -3,30 +3,29 @@ import React, { Component } from 'react'
 import './NoteForm.css'
 
 class NoteForm extends Component {
-  constructor(props) {
-    super(props)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.id) {
+      const newId = nextProps.match.params.id
 
-    this.state = {
-      note: props.blankNote(),
-    }
-  }
-
-componentWillReceiveProps(nextProps){
-    this.setState({note: nextProps.activeNote})
-}
-
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: '',
+      if (newId !== this.props.currentNote.id) {
+        const note = nextProps.notes[newId]
+        if (note) {
+          this.props.setCurrentNote(note)
+        }
+      }
+    } else if (this.props.currentNote.id) {
+      this.props.resetCurrentNote()
     }
   }
 
   handleChanges = (ev) => {
-    const note = {...this.state.note}
+    const note = {...this.props.currentNote}
     note[ev.target.name] = ev.target.value
-    this.setState({ note }, () => this.props.saveNote(note)) 
+    this.props.saveNote(note)
+  }
+
+  handleRemove = (ev) => {
+    this.props.removeNote(this.props.currentNote)
   }
 
   render() {
@@ -39,7 +38,7 @@ componentWillReceiveProps(nextProps){
               name="title"
               placeholder="Title your note"
               onChange={this.handleChanges}
-              value={this.state.note.title}
+              value={this.props.currentNote.title}
             />
           </p>
           <p>
@@ -47,9 +46,15 @@ componentWillReceiveProps(nextProps){
               name="body"
               placeholder="Just start typing..."
               onChange={this.handleChanges}
-              value={this.state.note.body}
+              value={this.props.currentNote.body}
             ></textarea>
           </p>
+          <button
+            type="button"
+            onClick={this.handleRemove}
+          >
+            <i className="fa fa-trash-o"></i>
+          </button>
         </form>
       </div>
     )

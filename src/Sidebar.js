@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import quill from './quill.svg'
 import newHover from './new-hover.png'
@@ -6,25 +7,21 @@ import newIcon from './new.png'
 import './SideBar.css'
 import SignOut from './SignOut'
 
-const SideBar = (props) => {
-
- const handleSubmit = (ev) => {
-   ev.preventDefault()
-   props.saveNote2()
- }
-
+const Sidebar = ({ signOut }) => {
   return (
     <div className="Sidebar">
       <div className="logo">
         <img src={quill} alt="Noteherder" />
       </div>
-      <button className="new-note" type="submit" onClick={handleSubmit}>
-        <img src={newHover} alt="New note" />
-        <img className="outline" src={newIcon} alt="New note" />
-      </button>
-      <SignOut signOut={props.signOut} />
+      <Link to="/notes" className="new-note">
+        <button>
+          <img src={newHover} alt="New note" />
+          <img className="outline" src={newIcon} alt="New note" />
+        </button>
+      </Link>
+      <SignOut signOut={signOut} />
     </div>
   )
 }
 
-export default SideBar
+export default Sidebar

@@ -1,16 +1,25 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 import './Main.css'
-import SideBar from './Sidebar'
+import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
 const Main = (props) => {
   return (
     <div className="Main">
-      <SideBar notes={props.notes} activeNote={props.activeNote} saveNote2={props.saveNote2} signOut={props.signOut}/>
-      <NoteList notes={props.notes} storeActiveNote={props.storeActiveNote} deleteNote={props.deleteNote}/>
-      <NoteForm activeNote={props.activeNote} storeActiveNote={props.storeActiveNote} saveNote={props.saveNote} blankNote={props.blankNote} />
+      <Sidebar signOut={props.signOut} />
+      <NoteList notes={props.notes} />
+
+      <Switch>
+        <Route path="/notes/:id" render={(navProps) => (
+          <NoteForm {...props} {...navProps} />
+        )} />
+        <Route render={(navProps) => (
+          <NoteForm {...props} {...navProps} />
+        )} />
+      </Switch>
     </div>
   )
 }
