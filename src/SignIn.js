@@ -21,10 +21,10 @@ const SignIn = () => {
   return (
     <div className="SignIn">
       <button
-        className="SignInGithub"
-        onClick={authenticateGit}
+        className="SignInGoogle"
+        onClick={authenticateGoogle}
       >
-      <img className="Git-SignIn" src={githubIcon} alt="Git SignIn" style={{"height" : "90%"}}/>
+      <img className="Google-SignIn" src={googleIcon} alt="Google SignIn"/>
       </button>
 
       <button
@@ -35,12 +35,13 @@ const SignIn = () => {
       </button>
 
       <button
-        className="SignInGoogle"
-        onClick={authenticateGoogle}
+        className="SignInGithub"
+        onClick={authenticateGit}
       >
-      <img className="Google-SignIn" src={googleIcon} alt="Google SignIn"/>
+      <img className="Git-SignIn" src={githubIcon} alt="Git SignIn" style={{"height" : "90%"}}/>
       </button>
-      <h1>Choose your sign-in method</h1>
+
+      <h6>Choose your sign-in method</h6>
     </div>
   )
 }
