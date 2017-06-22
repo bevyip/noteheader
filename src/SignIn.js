@@ -24,14 +24,14 @@ const SignIn = () => {
         className="SignInGithub"
         onClick={authenticateGit}
       >
-      <img className="Git-SignIn" src={githubIcon} alt="Git SignIn"/>
+      <img className="Git-SignIn" src={githubIcon} alt="Git SignIn" style={{"height" : "90%"}}/>
       </button>
 
       <button
         className="SignInFb"
         onClick={authenticateFb}
       >
-      <img className="Fb-SignIn" src={fbIcon} alt="Fb SignIn"/>
+      <img className="Fb-SignIn" src={fbIcon} alt="Fb SignIn" style={{"height" : "80%"}}/>
       </button>
 
       <button
@@ -40,6 +40,7 @@ const SignIn = () => {
       >
       <img className="Google-SignIn" src={googleIcon} alt="Google SignIn"/>
       </button>
+      <h1>Choose your sign-in method</h1>
     </div>
   )
 }
